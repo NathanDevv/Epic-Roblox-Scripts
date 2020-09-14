@@ -14,4 +14,4 @@ for i,v in next, getgc() do
     end;
 end;
 
-_deploy:deploy()
+_deploy:deploy();
