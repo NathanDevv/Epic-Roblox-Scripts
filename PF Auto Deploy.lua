@@ -15,5 +15,7 @@ for i,v in next, debug.getregistry() do
 end;
 
 while wait(1) do
-    _deploy:deploy();
+    if (not _deploy.isdeployed()) then
+        _deploy:deploy();
+    end;
 end;
