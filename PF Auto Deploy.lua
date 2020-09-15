@@ -1,6 +1,6 @@
 local _deploy;
 
-for i,v in next, getgc() do
+for i,v in next, debug.getregistry() do
     if (typeof(v) == "function") then
         for a, b in next, debug.getupvalues(v) do
             if (typeof(b) == "table" and rawget(b, "deploy")) then
