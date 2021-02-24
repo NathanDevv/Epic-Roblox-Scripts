@@ -7,6 +7,7 @@
 local Player            = game:GetService("Players").LocalPlayer;
 local ReplicatedStorage = game:GetService("ReplicatedStorage");
 local PlayerGui         = Player.PlayerGui;
+local setupvalue        = setupvalue or debug.setupvalue;
 
 -- UILib
 local Library           = loadstring(game:HttpGet("https://raw.githubusercontent.com/ICEEDev/Utilites/main/uilib.lua"))();
@@ -68,10 +69,12 @@ do
 
             while NocoolTog do
                 if (Player.Character and PlayerGui:FindFirstChild("ClassGui") and getsenv(PlayerGui.ClassGui.Main).pass) then
-                    debug.setupvalue(getsenv(PlayerGui.ClassGui.Main).criticalcoolingdown, 2, 0);
-                    debug.setupvalue(getsenv(PlayerGui.ClassGui.Main).ability1coolingdown, 2, 0);
-                    debug.setupvalue(getsenv(PlayerGui.ClassGui.Main).ability2coolingdown, 2, 0);
-                    debug.setupvalue(getsenv(PlayerGui.ClassGui.Main).attackcoolingdown, 2, 0);
+                    local ScriptEnv = getsenv(PlayerGui.ClassGui.Main);
+
+                    setupvalue(ScriptEnv.criticalcoolingdown, 2, 0);
+                    setupvalue(ScriptEnv.ability1coolingdown, 2, 0);
+                    setupvalue(ScriptEnv.ability2coolingdown, 2, 0);
+                    setupvalue(ScriptEnv.attackcoolingdown, 2, 0);
                 end;
                 wait();
             end;
@@ -79,19 +82,16 @@ do
     });
 end;
 
--- OneShot Kill
+-- UI Creations
 do
-    -- Creation
+    -- OneShot Kill
     CombatFolder:AddToggle({
         text        = "OneShot";
         flag        = "OneShot";
         state       = false;
     });
-end;
 
--- NoVoid Dmg
-do
-    -- Creation
+    -- NoVoid Dmg
     CombatFolder:AddToggle({
         text        = "NoVoidDamage";
         flag        = "NoVoid";
