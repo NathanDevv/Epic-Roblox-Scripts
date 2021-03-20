@@ -21,7 +21,7 @@ local Classes = {
 
 -- Gets Close Mob
 local function getNearestMob()
-    if (not Workspace:FindFirstChild("Mobs")) then return; end;
+    if (not game:GetService("Workspace"):FindFirstChild("Mobs")) then return; end;
 
     local dis, mob = math.huge;
 
