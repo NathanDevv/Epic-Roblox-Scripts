@@ -1,8 +1,9 @@
 -- vars
-local Players   = game.GetService(game, "Players"); -- only reason i did this is bc island royale would error if i use other way ( :shrug: )
-local Player    = Players.LocalPlayer;
-local Mouse     = Player:GetMouse();
-local CurrentCam= game.GetService(game, "Workspace").CurrentCamera;
+local Players       = game.GetService(game, "Players"); -- only reason i did this is bc island royale would error if i use other way ( :shrug: )
+local Player        = Players.LocalPlayer;
+local Mouse         = Player:GetMouse();
+local Workspace     = game.GetService(game, "Workspace");
+local CurrentCam    = Workspace.CurrentCamera;
 
 -- player func
 local function getClosestPlayer()
@@ -37,6 +38,7 @@ oldHook = hookmetamethod(game, "__namecall", function(self, ...)
             local wally = (closePlayer.Character.Head.Position - CurrentCam.CFrame.Position);
 
             args[1] = Ray.new(CurrentCam.CFrame.Position, wally.unit * wally.magnitude);
+            args[2] = {Workspace.Map_Objects, Workspace.MapBase};
         end;
     end;
     
