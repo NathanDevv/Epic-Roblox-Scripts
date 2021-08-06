@@ -28,23 +28,21 @@ end;
 
 -- main func
 local function run()
-    task.wait(0.8); -- task lib winning
+    task.wait(); -- task lib winning
 
-    if (Player.PlayerGui:FindFirstChild("MainGui")) then
-        local gunModule = require(Player.PlayerGui.MainGui.NewLocal.Tools.Tool.Gun);
-        local oldFunc   = gunModule.ConeOfFire;
+    local gunModule = require(Player.PlayerGui:WaitForChild("MainGui").NewLocal.Tools.Tool.Gun);
+    local oldFunc   = gunModule.ConeOfFire;
 
-        gunModule.ConeOfFire = function(...)
-            if (getfenv(2).script.Name == "Extra") then
-                local closePlayer = getClosestPlayer();
-                
-                if (closePlayer and closePlayer.Character) then
-                    return closePlayer.Character.Head.CFrame * CFrame.new(math.random(0.1, 0.25), math.random(0.1, 0.25), math.random(0.1, 0.25)).p;
-                end;
-            end;
+    gunModule.ConeOfFire = function(...)
+        if (getfenv(2).script.Name == "Extra") then
+            local closePlayer = getClosestPlayer();
             
-            return oldFunc(...);
+            if (closePlayer and closePlayer.Character) then
+                return closePlayer.Character.Head.CFrame * CFrame.new(math.random(0.1, 0.25), math.random(0.1, 0.25), math.random(0.1, 0.25)).p;
+            end;
         end;
+        
+        return oldFunc(...);
     end;
 end;
 
